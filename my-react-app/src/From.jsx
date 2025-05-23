@@ -40,10 +40,8 @@ const validate = () => {
   if (!form.country) newErrors.country = 'Country is required.';
   if (!form.city) newErrors.city = 'City is required.';
 
-  // PAN validation: accept 10 or 11 digit/alphanumeric without strict pattern
   if (!form.pan || !/^[A-Za-z0-9]{10,11}$/.test(form.pan)) newErrors.pan = 'PAN should be 10-11 alphanumeric characters.';
 
-  // Aadhar validation: remove spaces, check if 12 digits only
   const aadharDigits = form.aadhar.replace(/\s+/g, '');
   if (!aadharDigits || !/^\d{12}$/.test(aadharDigits)) newErrors.aadhar = 'Aadhar must be exactly 12 digits.';
 
@@ -64,7 +62,6 @@ const validate = () => {
     }
   };
 
-  // Disable submit button if any required field is empty
 const isFormValid = () => {
   const aadharDigits = form.aadhar.replace(/\s+/g, '');
   return (
@@ -72,7 +69,7 @@ const isFormValid = () => {
     form.lastName &&
     form.username &&
     /\S+@\S+\.\S+/.test(form.email) &&
-    form.password && // non-empty password of any length (or keep length check)
+    form.password && 
     form.phoneCode &&
     /^\d{10}$/.test(form.phoneNumber) &&
     form.country &&
